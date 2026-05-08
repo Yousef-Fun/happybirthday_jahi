@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:pages": "vite build --base=/happybirthday_jahi/",
+    "build:pages": "vite build",
     "preview": "vite preview",
-    "preview:pages": "vite preview --base=/happybirthday_jahi/"
+    "preview:pages": "vite preview"
   },
   "devDependencies": {
     "@types/react": "^19.1.6",

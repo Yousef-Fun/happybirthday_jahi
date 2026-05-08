@@ -36,9 +36,12 @@ jobs:
 
       - run: npm ci
 
-      # Project Pages need this base so /assets/... loads correctly (fixes blank white page).
       - name: Build
-        run: npm run build -- --base=/${{ github.event.repository.name }}/
+        run: npm run build
+
+      # GitHub Pages: same SPA entry for unknown paths (optional but safe).
+      - name: SPA fallback
+        run: cp dist/index.html dist/404.html
 
       - uses: actions/upload-pages-artifact@v3
         with:
