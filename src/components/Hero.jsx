@@ -67,7 +67,7 @@ export default function Hero({ onOpen, reduced }) {
       </motion.h1>
 
       <motion.p className="sub" variants={item}>
-        I made you a ridiculous, extra, over-animated bouquet — because your birthday should feel a little magical, sweet, and proudly cheesy.
+        Hey cutie — you deserve something pretty today. I made this thinking of you; hope it makes you smile a little.
       </motion.p>
 
       <motion.div variants={item}>
@@ -80,7 +80,7 @@ export default function Hero({ onOpen, reduced }) {
           whileTap={{ scale: 0.97 }}
         >
           <span className="cta__glow" />
-          <span>Open the good-luck card</span>
+          <span>Open your card</span>
           <motion.svg
             width="18"
             height="18"
