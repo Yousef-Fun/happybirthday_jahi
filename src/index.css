@@ -28,6 +28,9 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   color: var(--text);
   font-family: "Outfit", system-ui, sans-serif;
   font-weight: 400;
@@ -41,6 +44,7 @@ body {
 
 #root {
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .grain {
@@ -315,32 +319,164 @@ body {
   font-size: 1.55rem;
   line-height: 1;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
-.progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  z-index: 100;
-  transform-origin: 0 50%;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
-  opacity: 0.95;
-  pointer-events: none;
+/* ---- Phones & small tablets ---- */
+@media (max-width: 600px) {
+  .stage {
+    min-height: auto;
+    padding: max(1rem, env(safe-area-inset-top, 0px)) max(1rem, env(safe-area-inset-right, 0px))
+      max(2rem, env(safe-area-inset-bottom, 0px)) max(1rem, env(safe-area-inset-left, 0px));
+    gap: clamp(1rem, 4vw, 2rem);
+  }
+
+  .hero {
+    max-width: 100%;
+    padding-inline: 0.25rem;
+  }
+
+  .eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    line-height: 1.4;
+    padding: 0 0.25rem;
+  }
+
+  .title__line--sm {
+    font-size: clamp(1.4rem, 7vw, 2.15rem);
+  }
+
+  .title__line--xl {
+    font-size: clamp(2.6rem, 17vw, 4.25rem);
+  }
+
+  .gradient-text {
+    filter: drop-shadow(0 0 20px rgba(255, 120, 160, 0.4));
+  }
+
+  .sub {
+    margin-top: 1.25rem;
+    font-size: 0.98rem;
+    line-height: 1.68;
+    padding: 0 0.35rem;
+  }
+
+  .cta {
+    margin-top: 1.5rem;
+    min-height: 48px;
+    padding: 0.85rem 1.35rem;
+    width: 100%;
+    max-width: 18.5rem;
+    justify-content: center;
+    touch-action: manipulation;
+  }
+
+  .hero__rings {
+    width: min(110vw, 400px);
+    height: min(110vw, 400px);
+    top: 38%;
+  }
+
+  .garden-wrap {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .garden--advanced {
+    min-height: min(52vh, 340px);
+  }
+
+  .stems--svg {
+    gap: 0;
+    padding-inline: 0;
+  }
+
+  .flower-svg-col {
+    flex: 1 1 30%;
+    max-width: none;
+  }
+
+  .flower-svg-col--adv .flower-svg {
+    min-height: 200px;
+    max-height: min(48vh, 340px);
+  }
+
+  .scroll-hint {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    padding: 0 0.5rem;
+    line-height: 1.5;
+  }
+
+  .message-panel {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .card-glass {
+    width: 100%;
+    max-width: none;
+    max-height: min(88dvh, 640px);
+    margin: 0;
+    border-radius: 20px 20px 0 0;
+    padding: 1.35rem 1rem 1.5rem;
+    padding-top: max(1.35rem, env(safe-area-inset-top, 0px));
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .card-title {
+    font-size: clamp(1.35rem, 6vw, 1.75rem);
+    margin-bottom: 1rem;
+    padding-right: 3rem;
+  }
+
+  .card-body .line {
+    font-size: 0.98rem;
+    line-height: 1.72;
+    margin-bottom: 0.85em;
+  }
+
+  .card-signoff {
+    font-size: 1.05rem;
+    margin-top: 1.35rem;
+  }
+
+  .card-close {
+    width: 44px;
+    height: 44px;
+    top: max(0.65rem, env(safe-area-inset-top, 0px));
+    right: max(0.65rem, env(safe-area-inset-right, 0px));
+  }
 }
 
-.cursor-aura {
-  position: fixed;
-  width: 340px;
-  height: 340px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 4;
-  background: radial-gradient(circle, rgba(253, 224, 71, 0.16) 0%, rgba(251, 113, 133, 0.12) 38%, transparent 68%);
-  mix-blend-mode: screen;
-  translate: -50% -50%;
-  will-change: transform;
+@media (max-width: 600px) and (max-height: 520px) {
+  .garden--advanced {
+    min-height: min(38vh, 260px);
+  }
+
+  .flower-svg-col--adv .flower-svg {
+    max-height: min(38vh, 260px);
+    min-height: 160px;
+  }
+
+  .stage {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .stems--svg {
+    transform: scale(0.92);
+    transform-origin: bottom center;
+  }
+
+  .flower-svg-col--adv .flower-svg {
+    max-height: min(44vh, 300px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
