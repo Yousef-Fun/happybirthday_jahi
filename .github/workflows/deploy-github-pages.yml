@@ -1,0 +1,55 @@
+# Builds your Vite app and deploys the dist/ folder to GitHub Pages.
+#
+# First-time setup:
+# 1. Repo → Settings → Pages → Build and deployment → Source: GitHub Actions
+# 2. Push this workflow to main. The site will be at:
+#    https://<user>.github.io/<repo>/
+#
+# If your repo is the special "<username>.github.io" site (URL has no repo path),
+# change the Build step to: npm run build   (no --base)
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - run: npm ci
+
+      # Project Pages need this base so /assets/... loads correctly (fixes blank white page).
+      - name: Build
+        run: npm run build -- --base=/${{ github.event.repository.name }}/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
